@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: elasticsearch:8.4.3
+    container_name: elasticsearch2
+    ports:
+      - "9201:9200"
+      - "9301:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama2
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11435:11434"
+
+volumes:
+  ollama:
